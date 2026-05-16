@@ -1,0 +1,51 @@
+import pigpio
+import time
+
+SERVO = 18
+
+# Safe SG90 pulse range
+MIN_PULSEq
+ = 1000
+MAX_PULSE = 2000
+
+pi = pigpio.pi()
+
+if not pi.connected:
+    print("Could not connect to pigpio daemon")
+    exit()
+
+def set_angle(angle):
+    # keep angle between 0 and 180
+    angle = max(0, min(180, angle))
+
+    # convert angle to pulse width
+    pulse = MIN_PULSE + (angle / 180.0) * (MAX_PULSE - MIN_PULSE)
+
+    print(f"Moving to {angle}°  (pulse {int(pulse)})")
+
+    pi.set_servo_pulsewidth(SERVO, pulse)
+
+try:
+    while True:
+
+        user_input = input("Enter angle (0-180) or q to quit: ")
+
+        if user_input.lower() == "q":
+            break
+
+        try:
+            angle = float(user_input)
+            set_angle(angle)
+
+        except ValueError:
+            print("Please enter a valid number")
+
+except KeyboardInterrupt:
+    pass
+
+finally:
+    # stop servo pulses
+    pi.set_servo_pulsewidth(SERVO, 0)
+    pi.stop()
+
+    print("Program ended")
