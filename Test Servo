@@ -2,11 +2,11 @@ import pigpio
 import time
 
 SERVO = 18
+SERVO1 = 27
 
 # Safe SG90 pulse range
-MIN_PULSEq
- = 1000
-MAX_PULSE = 2000
+MIN_PULSE = 600
+MAX_PULSE = 2200
 
 pi = pigpio.pi()
 
@@ -20,10 +20,12 @@ def set_angle(angle):
 
     # convert angle to pulse width
     pulse = MIN_PULSE + (angle / 180.0) * (MAX_PULSE - MIN_PULSE)
-
+    pulse1 = MIN_PULSE + ((180 - angle) / 180.0) * (MAX_PULSE - MIN_PULSE)
+	
     print(f"Moving to {angle}°  (pulse {int(pulse)})")
 
     pi.set_servo_pulsewidth(SERVO, pulse)
+    pi.set_servo_pulsewidth(SERVO1, pulse1)
 
 try:
     while True:
