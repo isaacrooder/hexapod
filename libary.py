@@ -14,7 +14,7 @@ import time
 
 
 class Servo:
-    def __init__(self, pi, pin, min_pw=500, max_pw=2500):
+    def __init__(self, pi, pin, min_pw=600, max_pw=2300):
         self.pi = pi
         self.pin = pin
         self.min_pw = min_pw
@@ -35,20 +35,36 @@ class Leg:
         self.hip = hip
         self.knee = knee
 
-    def lift(self):
-        self.knee.move(60)
+    def liftleft(self):
+        self.knee.move(150)
 
-    def lower(self):
-        self.knee.move(100)
+    def lowerleft(self):
+        self.knee.move(0)
 
-    def forward(self):
-        self.hip.move(120)
-
-    def backward(self):
+    def forwardleft(self):
         self.hip.move(60)
 
-    def center(self):
-        self.hip.move(90)
+    def backwardleft(self):
+        self.hip.move(60)
+        
+    def liftright(self):
+        self.knee.move(30)
+
+    def lowerright(self):
+        self.knee.move(175)
+
+    def forwardright(self):
+        self.hip.move(120)
+        
+
+    def backwardright(self):
+        self.hip.move(120)
+
+    def centerleft(self):
+        self.hip.move(120)
+    
+    def centerright(self):
+        self.hip.move(60)
 
 
 class Hexapod:
