@@ -17,7 +17,7 @@ L6K, L6H = 10, 11
 KNEES = [L1K, L2K, L3K, L4K, L5K, L6K]
 HIPS  = [L1H, L2H, L3H, L4H, L5H, L6H]
 # -----------------------------
-# CALIBRATION (YOUR VALUES)
+# CALIBRATION 
 # -----------------------------
 
 HIP_BACK = 120
@@ -32,8 +32,7 @@ HIP_STEP = 45
 
 
 # -----------------------------
-# 🔥 KNEE INVERSION FIX
-# (adjust THIS if needed)
+# Knee inversion
 # -----------------------------
 
 INVERT_KNEES = {2, 6, 10}
